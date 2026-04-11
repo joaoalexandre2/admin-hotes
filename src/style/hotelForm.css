@@ -1,0 +1,110 @@
+.form-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.form-card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.form-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: black;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  outline: none;
+  transition: 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #6d28d9;
+  box-shadow: 0 0 0 2px rgba(109,40,217,0.2);
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+.button-submit {
+  width: 100%;
+  padding: 12px;
+  background: #6d28d9;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.button-submit:hover {
+  background: #5b21b6;
+}
+
+.tag-input {
+  display: flex;
+  gap: 5px;
+  margin-top: 5px;
+}
+
+.tag-input input {
+  flex: 1;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 8px;
+}
+
+.tag {
+  background: #ede9fe;
+  color: #5b21b6;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+
+.form-group label
+
+ {
+    display: block;
+    font-weight: 500;
+    color: black;
+    margin-bottom: 5px;
+}

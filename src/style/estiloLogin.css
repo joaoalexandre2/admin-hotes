@@ -1,0 +1,118 @@
+/* Gradiente animado no fundo */
+@keyframes gradient-move {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.bg-animated-gradient {
+  min-height: 100vh;       /* cobre 100% da altura da tela */
+  width: 100%;              /* evita estourar horizontalmente */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  background:url(../assets/fundo-blue.png);
+  box-sizing: border-box;   /* garante que padding não aumente a largura */
+}
+
+/* Glassmorphism */
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  padding: 2rem;
+  width: 90%;
+  max-width: 400px;
+  box-sizing: border-box;
+}
+
+/* Inputs */
+.input-style {
+  width: 92%;
+  padding: 0.75rem 0.75rem;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+.input-style::placeholder {
+  color: rgba(255,255,255,0.5);
+}
+.input-style:focus {
+  border-color:#004987;
+  box-shadow:#004987;
+  outline: none;
+}
+
+/* Botão */
+.button-style {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius:5px;
+  font-weight: 700;
+  background:#003465;
+  opacity: 0.6;
+  color: #fff;
+  font-size:15pt;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.button-style:hover {
+  transform: scale(1.05);
+}
+.button-style:active {
+  transform: scale(0.97);
+}
+
+/* Título com gradiente */
+.title-gradient {
+  background: white;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-size: 1.8rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* Footer */
+.footer-text {
+  color: rgba(255,255,255,0.7);
+  font-size: 0.875rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* Título menor em telas pequenas */
+@media (max-width: 480px) {
+  .title-gradient {
+    font-size: 2rem;
+  }
+
+  .glass-card {
+    padding: 1.5rem;
+  }
+}
+
+/* Espaçamento vertical entre inputs */
+.input-style + .input-style {
+  margin-top: 1rem; /* 16px de espaço entre inputs */
+}
+
+/* Espaçamento vertical consistente dentro do formulário */
+.glass-card > * + * {
+  margin-top: 1.5rem; /* 24px entre todos os elementos consecutivos */
+}
+
+#root{
+  width: 100% !important;
+}

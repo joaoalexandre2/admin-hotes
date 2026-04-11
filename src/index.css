@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* seu CSS abaixo pode continuar */
+
+body {
+  margin: 0;
+}
