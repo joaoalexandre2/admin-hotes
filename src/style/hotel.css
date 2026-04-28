@@ -154,3 +154,18 @@
 .new-card span {
   font-size: 40px;
 }
+
+.photos-preview {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.photo-preview {
+  width: 120px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}

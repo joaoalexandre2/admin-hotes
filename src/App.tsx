@@ -119,6 +119,7 @@ import Rooms from "./pages/Rooms";
 import RoomsForm from "./pages/RoomsForm";
 import AdminLayout from "./layouts/AdminLayout";
 import ProtectedRoute from "./routes/ProtectedRoute";
+import HotelPhotos from "./pages/HotelPhotos";
 
 function App() {
   return (
@@ -143,6 +144,7 @@ function App() {
           <Route path="hotels/:hotelId/rooms" element={<Rooms />} />
           <Route path="hotels/:hotelId/rooms/new" element={<RoomsForm />} />
           <Route path="rooms/edit/:id" element={<RoomsForm />} />
+          <Route path="hotels/:hotelId/photos" element={<HotelPhotos />} />
           
         </Route>
 
