@@ -45,9 +45,21 @@ npm install
 npm run dev
 ```
 
-A URL da API está em [`src/api/client.ts`](src/api/client.ts). Para usar uma API local, troque a `baseURL`.
+Configure a origem da API criando um arquivo `.env`:
 
-> ⚠️ **Login de demonstração.** A tela de login valida credenciais no próprio navegador e não usa autenticação real da API. Serve para mostrar o fluxo de rotas protegidas, e não deve ser usada em produção.
+```env
+VITE_API_URL=http://localhost:8080
+```
+
+Sem essa variável, o painel usa a API publicada no Render.
+
+## 🔐 Autenticação
+
+O login usa a **sessão da API** (cookie `httpOnly`), sem guardar credenciais no navegador:
+
+- `POST /auth/login`, `GET /auth/me` e `POST /auth/logout`, do [backend-hotels-api](https://github.com/joaoalexandre2/backend-hotels-api)
+- As rotas do painel só abrem se `/auth/me` confirmar a sessão
+- O Axios envia `withCredentials` e o cabeçalho `X-Requested-With`, exigidos pela API
 
 ## 📜 Scripts
 
