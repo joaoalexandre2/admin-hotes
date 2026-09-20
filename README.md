@@ -1,73 +1,82 @@
-# React + TypeScript + Vite
+<div align="center">
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 🏨 Admin Hotels
 
-Currently, two official plugins are available:
+### Painel administrativo para gerenciar hotéis e quartos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![Tailwind](https://img.shields.io/badge/Tailwind-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![React Query](https://img.shields.io/badge/React_Query-FF4154?style=for-the-badge&logo=reactquery&logoColor=white)
 
-## React Compiler
+**Frontend** · [Ver API (Spring Boot)](https://github.com/joaoalexandre2/backend-hotels-api)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+</div>
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## ✨ Funcionalidades
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+| | |
+|---|---|
+| 🏨 **Hotéis** | Listagem, busca, cadastro, edição e exclusão |
+| 🛏️ **Quartos** | Listagem, cadastro e edição, com filtro por hotel |
+| 📊 **Dashboard** | Painel inicial de acesso rápido |
+| 🔒 **Rotas protegidas** | Áreas do painel só abrem após o login |
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🧩 Como funciona
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```mermaid
+flowchart LR
+    U([👤 Administrador]) --> F[⚛️ Admin Hotels<br/>React + React Query]
+    F -- "Axios / REST" --> A[☕ backend-hotels-api<br/>Spring Boot]
+    A --> D[(🗄️ Banco de dados)]
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🚀 Começando
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Requisitos: Node.js 20+.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+git clone https://github.com/joaoalexandre2/admin-hotes.git
+cd admin-hotes
+npm install
+npm run dev
 ```
+
+A URL da API está em [`src/api/client.ts`](src/api/client.ts). Para usar uma API local, troque a `baseURL`.
+
+> ⚠️ **Login de demonstração.** A tela de login valida credenciais no próprio navegador e não usa autenticação real da API. Serve para mostrar o fluxo de rotas protegidas, e não deve ser usada em produção.
+
+## 📜 Scripts
+
+| Comando | O que faz |
+|---|---|
+| `npm run dev` | Servidor de desenvolvimento |
+| `npm run build` | Checagem de tipos + build de produção |
+| `npm run preview` | Pré-visualiza o build |
+| `npm run lint` | Roda o ESLint |
+
+## 📁 Estrutura
+
+```
+src/
+├── api/          # cliente Axios
+├── components/   # HotelCard, RoomCard, Sidebar
+├── hooks/        # React Query: hotéis, quartos, auth
+├── layouts/      # AdminLayout
+├── pages/        # Login, Dashboard, Hotels, Rooms e formulários
+├── routes/       # ProtectedRoute
+└── style/        # estilos por tela
+```
+
+## 🔗 Backend
+
+A API está em [joaoalexandre2/backend-hotels-api](https://github.com/joaoalexandre2/backend-hotels-api).
+
+---
+
+<div align="center">
+Feito por <a href="https://github.com/joaoalexandre2">João Alexandre</a>
+</div>
