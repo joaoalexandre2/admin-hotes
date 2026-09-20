@@ -10,7 +10,7 @@ export const useUpdateHotel = () => {
     },
 
     onSuccess: () => {
-      queryClient.invalidateQueries(["hotels"]);
+      queryClient.invalidateQueries({ queryKey: ["hotels"] });
     }
   });
 };

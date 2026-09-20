@@ -11,7 +11,7 @@ export const useDeleteHotel = () => {
 
     onSuccess: () => {
       // 🔥 Atualiza lista automaticamente
-      queryClient.invalidateQueries(["hotels"]);
+      queryClient.invalidateQueries({ queryKey: ["hotels"] });
     }
   });
 };

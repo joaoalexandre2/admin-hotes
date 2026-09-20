@@ -1,128 +1,30 @@
-// import { useState } from "react";
-// import "../style/estiloLogin.css";
-
-// export default function Login() {
-//   const [user, setUser] = useState("");
-//   const [password, setPassword] = useState("");
-
-//   const handleLogin = () => {
-//     if (user === "admin" && password === "123") {
-//       localStorage.setItem("auth", "true");
-//       window.location.href = "/";
-//     } else {
-//       alert("Credenciais inválidas");
-//     }
-//   };
-
-//   return (
-//     <div className="bg-animated-gradient min-h-screen w-screen flex items-center justify-center">
-//       <div className="glass-card">
-//         <h1 className="title-gradient">Hotels</h1>
-//         <p className="footer-text mb-6">Faça login para acessar o painel administrativo</p>
-
-//         {/* <label className="footer-text block mb-1">Usuário</label> */}
-//         <input
-//           type="text"
-//           placeholder="Digite seu usuário"
-//           className="input-style mb-4"
-//           onChange={(e) => setUser(e.target.value)}
-//         />
-
-
-
-//         {/* <label className="footer-text block mb-1">Senha</label> */}
-//         <input
-//           type="password"
-//           placeholder="Digite sua senha"
-//           className="input-style mb-6"
-//           onChange={(e) => setPassword(e.target.value)}
-//         />
-
-//         <button className="button-style mb-4" onClick={handleLogin}>
-//           Entrar
-//         </button>
-
-//         <p className="footer-text">© 2026 Admin Hotels. Todos os direitos reservados.</p>
-//       </div>
-//     </div>
-//   );
-// }
-
-// Novo
-
-// import { useState } from "react";
-// import { FaHotel } from "react-icons/fa"; // Ícone de hotel do Font Awesome
-// import "../style/estiloLogin.css";
-
-// export default function Login() {
-//   const [user, setUser] = useState("");
-//   const [password, setPassword] = useState("");
-
-//   const handleLogin = () => {
-//     if (user === "admin" && password === "123") {
-//       localStorage.setItem("auth", "true");
-//       window.location.href = "/";
-//     } else {
-//       alert("Credenciais inválidas");
-//     }
-//   };
-
-//   return (
-//     <div className="bg-animated-gradient min-h-screen w-screen flex items-center justify-center">
-//       <div className="glass-card">
-//         <h1 className="title-gradient flex items-center justify-center">
-//           <FaHotel className="mr-2 text-white" /> {/* ícone branco */}
-//           Hotels
-//         </h1>
-//         <p className="footer-text mb-6">Faça login para acessar o painel administrativo</p>
-
-//         <input
-//           type="text"
-//           placeholder="Digite seu usuário"
-//           className="input-style mb-4"
-//           onChange={(e) => setUser(e.target.value)}
-//         />
-
-//         <input
-//           type="password"
-//           placeholder="Digite sua senha"
-//           className="input-style mb-6"
-//           onChange={(e) => setPassword(e.target.value)}
-//         />
-
-//         <button className="button-style mb-4" onClick={handleLogin}>
-//           Entrar
-//         </button>
-
-//         <p className="footer-text">© 2026 Admin Hotels. Todos os direitos reservados.</p>
-//       </div>
-//     </div>
-//   );
-// }
-
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"; // <-- Import necessário
+import type { FormEvent } from "react";
 import { FaHotel } from "react-icons/fa";
+import { useAuth } from "../hooks/useAuth";
 import "../style/estiloLogin.css";
 
 export default function Login() {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate(); // <-- Hook do React Router
+  const [erro, setErro] = useState<string | null>(null);
+  const [enviando, setEnviando] = useState(false);
+  const { login } = useAuth();
 
-  const handleLogin = () => {
-    if (user === "admin" && password === "123") {
-      //localStorage.setItem("auth", "true"); // Marca como autenticado
-      sessionStorage.setItem("auth", "true");
-      navigate("/app");
-    } else {
-      alert("Credenciais inválidas");
+  const handleLogin = async (e: FormEvent) => {
+    e.preventDefault();
+    setErro(null);
+    setEnviando(true);
+    const mensagem = await login(user, password);
+    if (mensagem) {
+      setErro(mensagem);
+      setEnviando(false);
     }
   };
 
   return (
     <div className="bg-animated-gradient min-h-screen w-screen flex items-center justify-center">
-      <div className="glass-card">
+      <form className="glass-card" onSubmit={handleLogin}>
         <h1 className="title-gradient flex items-center justify-center">
           <FaHotel className="mr-2 text-white" />
           Hotels
@@ -133,6 +35,8 @@ export default function Login() {
           type="text"
           placeholder="Digite seu usuário"
           className="input-style mb-4"
+          autoComplete="username"
+          value={user}
           onChange={(e) => setUser(e.target.value)}
         />
 
@@ -140,15 +44,23 @@ export default function Login() {
           type="password"
           placeholder="Digite sua senha"
           className="input-style mb-6"
+          autoComplete="current-password"
+          value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button className="button-style mb-4" onClick={handleLogin}>
-          Entrar
+        {erro && (
+          <p role="alert" className="mb-4" style={{ color: "#fecaca" }}>
+            {erro}
+          </p>
+        )}
+
+        <button type="submit" className="button-style mb-4" disabled={enviando}>
+          {enviando ? "Entrando..." : "Entrar"}
         </button>
 
         <p className="footer-text">© 2026 Admin Hotels. Todos os direitos reservados.</p>
-      </div>
+      </form>
     </div>
   );
 }

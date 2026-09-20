@@ -1,24 +1,17 @@
-// import { Navigate } from "react-router-dom";
-
-// export default function ProtectedRoute({ children }: any) {
-//   //const isAuth = localStorage.getItem("auth");
-//   const isAuth = sessionStorage.getItem("auth");
-
-//   if (!isAuth) {
-//     return <Navigate to="/login" replace />;
-//   }
-
-//   return children;
-// }
-
+import type { ReactNode } from "react";
 import { Navigate } from "react-router-dom";
+import { useSession } from "../hooks/useAuth";
 
-export default function ProtectedRoute({ children }: any) {
-  const isAuth = sessionStorage.getItem("auth") === "true";
+export default function ProtectedRoute({ children }: { children: ReactNode }) {
+  const { data: usuario, isLoading } = useSession();
 
-  if (!isAuth) {
+  if (isLoading) {
+    return <p style={{ padding: 24 }}>Carregando...</p>;
+  }
+
+  if (!usuario) {
     return <Navigate to="/login" replace />;
   }
 
-  return children;
+  return <>{children}</>;
 }
